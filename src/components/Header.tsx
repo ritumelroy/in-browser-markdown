@@ -29,19 +29,20 @@ export function Header({ navClickToggle, navState, themeState }: headerProps) {
   }, [modal]);
 
   const closeModal = () => {
-    console.log("hi");
     setModal(false);
   };
 
   const handleDelete = () => {
     setModal(true);
   };
+
   // console.log(navState);
   return (
     <div>
       <dialog
         ref={ref}
         onCancel={closeModal}
+        // onClose={testModal}
         className={
           themeState === "dark"
             ? "bg-dark-2 h-[14.5rem] w-[25rem] p-4 rounded-md "
@@ -49,15 +50,22 @@ export function Header({ navClickToggle, navState, themeState }: headerProps) {
         }
       >
         <section className="flex flex-col font-robotoslab ">
-          <h1
-            className={
-              themeState === "dark"
-                ? "text-white text-xl font-medium pt-2"
-                : " text-xl font-medium pt-2"
-            }
-          >
-            Delete this document?
-          </h1>
+          <div className="flex justify-between">
+            <h1
+              className={
+                themeState === "dark"
+                  ? "text-white text-xl font-medium pt-2"
+                  : " text-xl font-medium pt-2"
+              }
+            >
+              Delete this document?
+            </h1>
+            <button className="mt-1.5" onClick={closeModal}>
+              <div className="bg-grey-3 w-5 h-[0.2rem] rotate-45 translate-y-1 rounded-lg"></div>
+              <div className="bg-grey-3 w-5 h-[0.2rem] -rotate-45  rounded-lg"></div>
+            </button>
+          </div>
+
           <p className="text-base pt-3 text-grey-2 ">
             Are you sure you want to delete the '{title}.md' document and it's
             contents?
@@ -103,20 +111,18 @@ export function Header({ navClickToggle, navState, themeState }: headerProps) {
           </section>
 
           <section className="flex gap-3 mr-2">
-            <img
-              src={iconDelete}
-              className="object-contain"
-              onClick={handleDelete}
-            />
-            <div
-              className="bg-mark-orange h-11 w-11 rounded-md "
-              // onClick={() => saveDoc()}
-            >
-              <img
-                src={iconSave}
-                className="object-contain relative top-3.5 left-3.5"
-              />
-            </div>
+            <button onClick={handleDelete}>
+              <img src={iconDelete} className="object-contain" />
+            </button>
+
+            <button>
+              <div className="bg-mark-orange h-11 w-11 rounded-md ">
+                <img
+                  src={iconSave}
+                  className="object-contain relative top-3.5 left-3.5"
+                />
+              </div>
+            </button>
           </section>
         </div>
       </div>

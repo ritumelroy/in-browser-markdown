@@ -9,3 +9,35 @@ textarea {
 
   resize: none; /*remove the resize handle on the bottom right*/
 }
+
+#main-mobile {
+  display: none;
+}
+
+#markdownEye {
+  display: none;
+}
+#prevSmall {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  #main-not-mobile {
+    display: none;
+  }
+
+  #markdownEye {
+    display: block;
+  }
+
+  #main-mobile {
+    display: block;
+  }
+
+  #prevLarge {
+    display: none;
+  }
+  #prevSmall {
+    display: block;
+  }
+}

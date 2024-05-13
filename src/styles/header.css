@@ -9,3 +9,9 @@
 .header-save {
   background-color: #e46643;
 }
+
+::backdrop {
+  background-color: #35393f;
+  /* filter: blur(4px); */
+  opacity: 0.75;
+}

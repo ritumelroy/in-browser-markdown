@@ -1,8 +1,7 @@
 import { editorProps } from "../models/editor";
 // import eyeclosed from "../assets/icon-hide-preview.svg";
 import eyeopen from "../assets/icon-show-preview.svg";
-export function Editor({ themeState }: editorProps) {
-  //   console.log(navState);
+export function Editor({ themeState, setMobileState }: editorProps) {
   return (
     <>
       <header
@@ -13,7 +12,10 @@ export function Editor({ themeState }: editorProps) {
         }
       >
         <p className="tracking-widest pl-5  py-3 text-grey-2">MARKDOWN</p>
-        <img src={eyeopen} className=" pr-5 object-contain" />
+
+        <button id="markdownEye" onClick={setMobileState}>
+          <img src={eyeopen} className=" pr-5 object-contain" />
+        </button>
       </header>
 
       <main className="h-full z-0">
@@ -22,7 +24,7 @@ export function Editor({ themeState }: editorProps) {
           placeholder="Write here ..."
           className={
             " h-full w-full p-5 " +
-            (themeState === "dark" ? "bg-dark-1" : "bg-white")
+            (themeState === "dark" ? "bg-dark-1 text-grey-3" : "bg-white")
           }
         />
       </main>
