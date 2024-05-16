@@ -4,7 +4,55 @@
 @import "navbar.css";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+ol,
+ul li {
+  color: #7c8187;
+  font-weight: 400;
+  font-size: 0.875rem;
+}
+
+ol {
+  list-style: decimal;
+  padding-left: 2rem;
+  padding-bottom: 1rem;
+  /* color: "#e46643"; */
+  /* font-weight: 300; */
+}
+
+ul {
+  list-style: disc;
+
+  padding-left: 2rem;
+  padding-bottom: 1rem;
+}
+
+ul > li::marker {
+  color: #e46643;
+}
+p {
+  color: #7c8187;
+  padding-bottom: 1rem;
+  font-weight: 300;
+}
+blockquote p {
+  font-weight: 700;
+  color: black;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding-left: 2em;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-left: 0.4em #e46643 solid;
+  margin-bottom: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+code {
+  background-color: #f5f5f5;
+}

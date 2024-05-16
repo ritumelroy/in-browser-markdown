@@ -22,6 +22,7 @@ export default {
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
         robotoslab: ["Roboto Slab", "sans-serif"],
+        robotomono: ["Roboto Mono", "monospace"],
       },
     },
   },

@@ -11,6 +11,8 @@ function App() {
 
   const [mobileEditor, setMobileEditor] = useState(true);
 
+  const [markdownInput, setMarkdownInput] = useState("");
+
   const toggleNav = () => {
     setNavOpen((prev) => !prev);
   };
@@ -30,14 +32,18 @@ function App() {
   const handleMobileState = () => {
     setMobileEditor((prev) => !prev);
   };
-  // handlePrevieState();
+
+  const handleMarkdownInputChange = (inputVal: string) => {
+    setMarkdownInput(inputVal);
+  };
+
   return (
     <div className="flex h-screen w-screen overflow-hidden font-roboto ">
       <div className={navOpen ? "" : "hidden"}>
         <Navbar colourTheme={colourTheme} toggleColTheme={toggleTheme} />
       </div>
       {/* flex flex-col */}
-      <div className="  ">
+      <div className="">
         <Header
           navClickToggle={toggleNav}
           navState={navOpen}
@@ -56,13 +62,15 @@ function App() {
               themeState={colourTheme}
               setMobileState={handleMobileState}
               mobileState={mobileEditor}
+              textInput={markdownInput}
+              textInputHelper={handleMarkdownInputChange}
             />
           </div>
           <div className={previewState ? "w-full" : "w-1/2"}>
             <Preview
               navState={navOpen}
               themeState={colourTheme}
-              textValue="erg"
+              textValue={markdownInput}
               setPrevState={handlePrevieState}
               eyeState={previewState}
               setMobileState={handleMobileState}
@@ -77,6 +85,8 @@ function App() {
               themeState={colourTheme}
               setMobileState={handleMobileState}
               mobileState={mobileEditor}
+              textInput={markdownInput}
+              textInputHelper={handleMarkdownInputChange}
             />
           ) : (
             <Preview

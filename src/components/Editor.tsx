@@ -1,7 +1,12 @@
 import { editorProps } from "../models/editor";
 // import eyeclosed from "../assets/icon-hide-preview.svg";
 import eyeopen from "../assets/icon-show-preview.svg";
-export function Editor({ themeState, setMobileState }: editorProps) {
+export function Editor({
+  themeState,
+  setMobileState,
+  textInput,
+  textInputHelper,
+}: editorProps) {
   return (
     <>
       <header
@@ -22,8 +27,10 @@ export function Editor({ themeState, setMobileState }: editorProps) {
         <textarea
           name="editor"
           placeholder="Write here ..."
+          value={textInput}
+          onChange={(e) => textInputHelper(e.target.value)}
           className={
-            " h-full w-full p-5 " +
+            " h-full w-full p-5 font-robotomono size-[0.875rem]" +
             (themeState === "dark" ? "bg-dark-1 text-grey-3" : "bg-white")
           }
         />
