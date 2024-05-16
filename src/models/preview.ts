@@ -7,3 +7,8 @@ export interface previewProps {
   setMobileState: () => void;
   mobileState: boolean;
 }
+
+export interface highlighterProps {
+  lang: string;
+  val: string;
+}
