@@ -11,6 +11,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 // import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { oneDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
+// import { ReactNode } from "react";
 export function Preview({
   themeState,
   textValue,
@@ -20,6 +21,14 @@ export function Preview({
   mobileState,
 }: previewProps) {
   // const
+
+  // type CodeProps = {
+  //   node?: unknown;
+  //   inline?: boolean;
+  //   className?: string;
+  //   children: ReactNode;
+  //   [key: string]: unknown; // This allows for additional props
+  // };
   return (
     <>
       <header
@@ -56,119 +65,106 @@ export function Preview({
         >
           <h1> I am amazing </h1>
         </div> */}
-        <div>
+        <div className="h-full">
           <Markdown
             components={{
-              code({ node, inline, className, children, ...props }) {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              code({ inline, className, children, ...props }: any) {
                 const match = /language-(\w+)/.exec(className || "");
+
                 return !inline && match ? (
                   <SyntaxHighlighter
-                    children={String(children).replace(/\n$/, "")}
-                    language={match[1]}
+                    style={themeState === "light" ? docco : oneDark}
                     PreTag="div"
+                    language={match[1]}
                     {...props}
-                    style={oneDark}
-                  />
+                  >
+                    {String(children).replace(/\n$/, "")}
+                  </SyntaxHighlighter>
                 ) : (
                   <code className={className} {...props}>
                     {children}
                   </code>
                 );
               },
-              // code({node, inline, className, children, ...props}) {
-              //   const match = /language-(\w+)/.exec(className || '')
-              //   return !inline && match ? (
-              //     <SyntaxHighlighter
-              //       children={String(children).replace(/\n$/, '')}
-              //       style={dark}
-              //       language={match[1]}
-              //       PreTag="div"
-              //       {...props}
-              //     />
-              //   ) : (
-              //     <code className={className} {...props}>
-              //       {children}
-              //     </code>
-              //   )
-              // Map `h1` (`# heading`) to use `h2`s.
-              // h1: "h2",
+
               // tailwind headings are unstyled ..
-              // h1: ({ ...props }) => (
-              //   <h1
-              //     style={{
-              //       fontSize: "2rem",
-              //       fontWeight: "700",
-              //       paddingBottom: "1rem",
-              //     }}
-              //     {...props}
-              //   />
-              // ),
-              // h2: ({ ...props }) => (
-              //   <h2
-              //     style={{
-              //       fontSize: "1.75rem",
-              //       paddingBottom: "1rem",
-              //       fontWeight: "100",
-              //     }}
-              //     {...props}
-              //   />
-              // ),
-              // h3: ({ ...props }) => (
-              //   <h3
-              //     style={{
-              //       fontSize: "1.5rem",
-              //       paddingBottom: "1rem",
-              //       fontWeight: "700",
-              //     }}
-              //     {...props}
-              //   />
-              // ),
-              // h4: ({ ...props }) => (
-              //   <h4
-              //     style={{
-              //       fontSize: "1.25rem",
-              //       paddingBottom: "1rem",
-              //       fontWeight: "500",
-              //     }}
-              //     {...props}
-              //   />
-              // ),
-              // h5: ({ ...props }) => (
-              //   <h5
-              //     style={{
-              //       fontSize: "1rem",
-              //       paddingBottom: "1rem",
-              //       fontWeight: "400",
-              //     }}
-              //     {...props}
-              //   />
-              // ),
-              // h6: ({ ...props }) => (
-              //   <h6
-              //     style={{
-              //       fontSize: "0.875rem",
-              //       paddingBottom: "1rem",
-              //       color: "#e46643",
-              //     }}
-              //     {...props}
-              //   />
-              // ),
-              // p: ({ ...props }) => (
-              //   <p
-              //     style={{
-              //       fontSize: "0.875rem",
-              //       // paddingBottom: ".5rem",
-              //       // color: "#7c8187",
-              //       // fontWeight: "300",
-              //     }}
-              //     {...props}
-              //   />
-              // ),
+              h1: ({ ...props }) => (
+                <h1
+                  style={{
+                    fontSize: "2rem",
+                    fontWeight: "700",
+                    paddingBottom: "1rem",
+                  }}
+                  {...props}
+                />
+              ),
+              h2: ({ ...props }) => (
+                <h2
+                  style={{
+                    fontSize: "1.75rem",
+                    paddingBottom: "1rem",
+                    fontWeight: "100",
+                  }}
+                  {...props}
+                />
+              ),
+              h3: ({ ...props }) => (
+                <h3
+                  style={{
+                    fontSize: "1.5rem",
+                    paddingBottom: "1rem",
+                    fontWeight: "700",
+                  }}
+                  {...props}
+                />
+              ),
+              h4: ({ ...props }) => (
+                <h4
+                  style={{
+                    fontSize: "1.25rem",
+                    paddingBottom: "1rem",
+                    fontWeight: "500",
+                  }}
+                  {...props}
+                />
+              ),
+              h5: ({ ...props }) => (
+                <h5
+                  style={{
+                    fontSize: "1rem",
+                    paddingBottom: "1rem",
+                    fontWeight: "400",
+                  }}
+                  {...props}
+                />
+              ),
+              h6: ({ ...props }) => (
+                <h6
+                  style={{
+                    fontSize: "0.875rem",
+                    paddingBottom: "1rem",
+                    color: "#e46643",
+                  }}
+                  {...props}
+                />
+              ),
+              p: ({ ...props }) => (
+                <p
+                  style={{
+                    fontSize: "0.875rem",
+                    // paddingBottom: ".5rem",
+                    // color: "#7c8187",
+                    // fontWeight: "300",
+                  }}
+                  {...props}
+                />
+              ),
             }}
             children={textValue}
             remarkPlugins={[remarkGfm]}
             className={
-              " h-full w-full p-5 font-robotoslab tracking-wide " +
+              "h-full w-full p-5 font-robotoslab tracking-wide " +
               (themeState === "dark" ? "bg-dark-1 text-grey-3" : "bg-white")
             }
           />

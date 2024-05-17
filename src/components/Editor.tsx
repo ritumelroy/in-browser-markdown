@@ -7,6 +7,7 @@ export function Editor({
   textInput,
   textInputHelper,
 }: editorProps) {
+  // console.log("hello", themeState);
   return (
     <>
       <header
@@ -30,7 +31,7 @@ export function Editor({
           value={textInput}
           onChange={(e) => textInputHelper(e.target.value)}
           className={
-            " h-full w-full p-5 font-robotomono size-[0.875rem]" +
+            " h-full w-full p-5 font-robotomono size-[0.875rem] " +
             (themeState === "dark" ? "bg-dark-1 text-grey-3" : "bg-white")
           }
         />
