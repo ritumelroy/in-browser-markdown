@@ -1,17 +1,15 @@
 import { previewProps } from "../models/preview";
-// import eyeclosed from "../assets/icon-hide-preview.svg";
+
 import eyeopen from "../assets/icon-show-preview.svg";
 import eyeclose from "../assets/icon-hide-preview.svg";
 
-// import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Markdown from "react-markdown";
 
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-// import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { oneDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
-// import { ReactNode } from "react";
+
 export function Preview({
   themeState,
   textValue,
@@ -20,15 +18,6 @@ export function Preview({
   setMobileState,
   mobileState,
 }: previewProps) {
-  // const
-
-  // type CodeProps = {
-  //   node?: unknown;
-  //   inline?: boolean;
-  //   className?: string;
-  //   children: ReactNode;
-  //   [key: string]: unknown; // This allows for additional props
-  // };
   return (
     <>
       <header
@@ -57,15 +46,12 @@ export function Preview({
       </header>
 
       <main className="h-full z-0">
-        {/* <div
+        <div
           className={
-            " h-full w-full p-5 font-robotoslab " +
+            "h-full w-full " +
             (themeState === "dark" ? "bg-dark-1 text-grey-3" : "bg-white")
           }
         >
-          <h1> I am amazing </h1>
-        </div> */}
-        <div className="h-full">
           <Markdown
             components={{
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -153,9 +139,6 @@ export function Preview({
                 <p
                   style={{
                     fontSize: "0.875rem",
-                    // paddingBottom: ".5rem",
-                    // color: "#7c8187",
-                    // fontWeight: "300",
                   }}
                   {...props}
                 />
@@ -164,8 +147,8 @@ export function Preview({
             children={textValue}
             remarkPlugins={[remarkGfm]}
             className={
-              "h-full w-full p-5 font-robotoslab tracking-wide " +
-              (themeState === "dark" ? "bg-dark-1 text-grey-3" : "bg-white")
+              "h-full p-5 font-robotoslab tracking-wide " +
+              (eyeState ? "pl-[25%] w-[77%]" : "")
             }
           />
         </div>
@@ -173,12 +156,3 @@ export function Preview({
     </>
   );
 }
-
-// const HighlighterComponent = ({val, lang}:highlighterProps) => {
-//   // const codeString = '(num) => num + 1';
-//   return (
-//     <SyntaxHighlighter language={lang} style={dark}>
-//       {val}
-//     </SyntaxHighlighter>
-//   );
-// };

@@ -48,3 +48,9 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+@media (min-width: 900px) {
+  .navbar-logo {
+    display: none;
+  }
+}

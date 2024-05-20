@@ -3,19 +3,11 @@ import "../styles/global.css";
 import doc from "../assets/icon-document.svg";
 import iconDelete from "../assets/icon-delete.svg";
 import iconSave from "../assets/icon-save.svg";
+import logo from "../assets/logo.svg";
 import { headerProps } from "../models/header";
 import { useEffect, useRef, useState } from "react";
 
 export function Header({ navClickToggle, navState, themeState }: headerProps) {
-  // const [open, setOpen] = useState(false);
-
-  // const toggleClick = () => {
-  //   setOpen((prev) => !prev);
-  // };
-  // const saveDoc = () => {
-  //   dialog.show();
-  // };
-  // const test = "true";
   const title = "welcome";
   const ref = useRef<HTMLDialogElement>(null);
   const [modal, setModal] = useState(false);
@@ -104,10 +96,27 @@ export function Header({ navClickToggle, navState, themeState }: headerProps) {
           </div>
         </button>
 
+        <div className="h-16 pt-7 pl-7 header-logo ">
+          <img src={logo} />
+        </div>
+
+        <div className="bg-dark-4 h-11 w-[3px] ml-7 header-divider"></div>
+
         <div className=" w-full flex justify-between items-center">
           <section className="ml-7 flex gap-5">
             <img src={doc} className="object-contain" />
-            <p className="text-white "> {title}.md</p>
+            <div>
+              <p className="text-grey-2 pb-0">Document Name</p>
+              <input
+                placeholder="untitled"
+                // value={}
+                // onChange={}
+                className="bg-inherit doc-title-name-w cursor-pointer text-grey-4 "
+              ></input>
+              {/* <div className="w-36 underline underline-offset-4">
+                <p className="text-white pb-0  ">{title}.md</p>
+              </div> */}
+            </div>
           </section>
 
           <section className="flex gap-3 mr-2">
@@ -116,11 +125,14 @@ export function Header({ navClickToggle, navState, themeState }: headerProps) {
             </button>
 
             <button>
-              <div className="bg-mark-orange h-11 w-11 rounded-md ">
+              <div className="bg-mark-orange flex h-11 header-save-container rounded-md ">
                 <img
                   src={iconSave}
-                  className="object-contain relative top-3.5 left-3.5"
+                  className="object-contain relative h-5 top-3 left-3.5 pr-6"
                 />
+                <div className="header-save-div text-grey-4 pt-[0.7rem]">
+                  Save Changes
+                </div>
               </div>
             </button>
           </section>

@@ -1,9 +1,9 @@
-import logo from "../assets/logo.svg";
 import docu from "../assets/icon-document.svg";
 import moon from "../assets/icon-dark-mode.svg";
 import sun from "../assets/icon-light-mode.svg";
 import { navbarProps } from "../models/navbar";
-// border border-dashed border-white
+import logo from "../assets/logo.svg";
+
 export function Navbar({ colourTheme, toggleColTheme }: navbarProps) {
   console.log(colourTheme);
   const allDocsList = ["untited-documet", "welcome"];
@@ -11,11 +11,11 @@ export function Navbar({ colourTheme, toggleColTheme }: navbarProps) {
   return (
     <div className="bg-dark-2 w-[300px] h-full pl-7 flex flex-col justify-between">
       <section>
-        <header className="h-16 pt-7 ">
+        <header className="h-16 pt-7 navbar-logo">
           <img src={logo} />
         </header>
 
-        <p className="text-grey-2 tracking-widest pb-5 ">MY DOCUMENTS</p>
+        <p className="text-grey-2 tracking-widest pb-5 pt-7 ">MY DOCUMENTS</p>
         <button className="bg-mark-orange w-[15rem] h-12 text-white rounded-md">
           + New Document
         </button>
@@ -23,10 +23,10 @@ export function Navbar({ colourTheme, toggleColTheme }: navbarProps) {
         {allDocsList.map((name, k) => (
           <div key={k} className="pt-10 flex gap-3">
             <img src={docu} className="object-contain" />
-            <section className="pl-3">
-              <p className="text-grey-2 font-light">{date}</p>
-              <p className="text-white">{name}.md</p>
-            </section>
+            <button className="pl-3 text-left">
+              <p className="text-grey-2 font-light pb-0 ">{date}</p>
+              <p className="text-white pb-0  ">{name}.md</p>
+            </button>
           </div>
         ))}
       </section>

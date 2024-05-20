@@ -15,3 +15,32 @@
   /* filter: blur(4px); */
   opacity: 0.75;
 }
+
+input:focus {
+  outline: none;
+  caret-color: #e46643;
+  border-bottom: 2px solid white;
+}
+
+.doc-title-name-w {
+  width: 20rem;
+}
+
+.header-save-container {
+  width: 10rem;
+}
+
+@media (max-width: 900px) {
+  .header-logo,
+  .header-divider,
+  .header-save-div {
+    display: none;
+  }
+
+  .doc-title-name-w {
+    width: 10rem;
+  }
+  .header-save-container {
+    width: 2.75rem;
+  }
+}

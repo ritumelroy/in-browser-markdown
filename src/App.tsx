@@ -13,6 +13,8 @@ function App() {
 
   const [markdownInput, setMarkdownInput] = useState("");
 
+  const [docTitle, setDocTitle] = useState("");
+
   const toggleNav = () => {
     setNavOpen((prev) => !prev);
   };
@@ -37,6 +39,20 @@ function App() {
     setMarkdownInput(inputVal);
   };
 
+  const handleDocumentTitleChange = (inputVal: string) => {
+    setDocTitle(inputVal);
+  };
+
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(2, "0");
+  const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  const yyyy = today.getFullYear();
+
+  // const monthList = ['Jan', 'Feb', 'Mar', 'Apr', ]
+  const todayDate = `${dd} ${mm} ${yyyy}`;
+
+  console.log(todayDate);
+
   return (
     <div className="flex h-screen w-screen overflow-hidden font-roboto ">
       <div className={navOpen ? "" : "hidden"}>
@@ -48,13 +64,15 @@ function App() {
           navClickToggle={toggleNav}
           navState={navOpen}
           themeState={colourTheme}
+          documentTitle={docTitle}
+          handleDocumentTitle={handleDocumentTitleChange}
         />
         <div id="main-not-mobile" className="flex w-full h-full ">
           <div
             className={
               " border-r-2 " +
               (colourTheme === "dark" ? "border-grey-1 " : "") +
-              (previewState ? "w-0" : "w-1/2")
+              (previewState ? "w-0 hidden" : "w-1/2")
             }
           >
             <Editor
@@ -66,7 +84,7 @@ function App() {
               textInputHelper={handleMarkdownInputChange}
             />
           </div>
-          <div className={previewState ? "w-full" : "w-1/2"}>
+          <div className={previewState ? "w-full " : "w-1/2"}>
             <Preview
               navState={navOpen}
               themeState={colourTheme}
